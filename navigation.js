@@ -1,4 +1,4 @@
-// Navigation management for the online test application
+// Navigation management for the GPSC online test application with DaisyUI
 
 class NavigationManager {
     constructor(questionManager) {
@@ -66,20 +66,26 @@ class NavigationManager {
 
     createPageButton(pageNumber, location) {
         const button = document.createElement('button');
-        button.className = `page-btn border border-gray-300 rounded text-sm font-medium transition-all duration-200 hover:bg-gray-100 ${
-            pageNumber === this.currentPage ? 'active' : ''
-        }`;
+        
+        // Base DaisyUI classes
+        let buttonClasses = 'btn btn-sm btn-square';
+        
+        // Add status-based classes
+        const status = this.questionManager.getPageStatus(pageNumber);
+        if (pageNumber === this.currentPage) {
+            buttonClasses += ' btn-primary';
+        } else if (status === 'completed') {
+            buttonClasses += ' btn-success btn-outline';
+        } else if (status === 'partial') {
+            buttonClasses += ' btn-warning btn-outline';
+        } else {
+            buttonClasses += ' btn-neutral btn-outline';
+        }
+        
+        button.className = buttonClasses;
         button.textContent = pageNumber;
         button.setAttribute('data-page', pageNumber);
         button.setAttribute('data-location', location);
-        
-        // Add status class
-        const status = this.questionManager.getPageStatus(pageNumber);
-        if (status === 'completed') {
-            button.classList.add('answered');
-        } else if (status === 'partial') {
-            button.classList.add('partially-answered');
-        }
         
         button.addEventListener('click', () => {
             this.goToPage(pageNumber, location);
@@ -90,8 +96,8 @@ class NavigationManager {
 
     updatePageStatus() {
         // Update page buttons in both navigation sections
-        const topPageButtons = this.pageNumbers.querySelectorAll('.page-btn');
-        const bottomPageButtons = this.pageNumbersBottom.querySelectorAll('.page-btn');
+        const topPageButtons = this.pageNumbers.querySelectorAll('.btn');
+        const bottomPageButtons = this.pageNumbersBottom.querySelectorAll('.btn');
         
         [topPageButtons, bottomPageButtons].forEach(buttonGroup => {
             buttonGroup.forEach(button => {
@@ -99,13 +105,17 @@ class NavigationManager {
                 const status = this.questionManager.getPageStatus(pageNumber);
                 
                 // Remove existing status classes
-                button.classList.remove('answered', 'partially-answered');
+                button.classList.remove('btn-success', 'btn-warning', 'btn-neutral', 'btn-primary', 'btn-outline');
                 
-                // Add appropriate status class
-                if (status === 'completed') {
-                    button.classList.add('answered');
+                // Apply appropriate status class
+                if (pageNumber === this.currentPage) {
+                    button.classList.add('btn-primary');
+                } else if (status === 'completed') {
+                    button.classList.add('btn-success', 'btn-outline');
                 } else if (status === 'partial') {
-                    button.classList.add('partially-answered');
+                    button.classList.add('btn-warning', 'btn-outline');
+                } else {
+                    button.classList.add('btn-neutral', 'btn-outline');
                 }
             });
         });
@@ -150,15 +160,7 @@ class NavigationManager {
         this.nextBtnBottom.disabled = isNextDisabled;
         
         // Update page button states in both sections
-        const topPageButtons = this.pageNumbers.querySelectorAll('.page-btn');
-        const bottomPageButtons = this.pageNumbersBottom.querySelectorAll('.page-btn');
-        
-        [topPageButtons, bottomPageButtons].forEach(buttonGroup => {
-            buttonGroup.forEach(button => {
-                const pageNumber = parseInt(button.getAttribute('data-page'));
-                button.classList.toggle('active', pageNumber === this.currentPage);
-            });
-        });
+        this.updatePageStatus();
         
         // Update question range in both sections
         this.updateQuestionRange();
@@ -180,7 +182,7 @@ class NavigationManager {
             });
         } else if (location === 'bottom') {
             // Scroll to bottom navigation area
-            const bottomNav = document.getElementById('testInterface').querySelector('.bg-white.rounded-lg.shadow-md.mt-6');
+            const bottomNav = document.getElementById('testInterface').querySelector('.card.mt-6');
             if (bottomNav) {
                 bottomNav.scrollIntoView({
                     behavior: 'smooth',
@@ -219,8 +221,8 @@ class NavigationManager {
 
     // Highlight pages with unanswered questions
     highlightIncompletePages() {
-        const topPageButtons = this.pageNumbers.querySelectorAll('.page-btn');
-        const bottomPageButtons = this.pageNumbersBottom.querySelectorAll('.page-btn');
+        const topPageButtons = this.pageNumbers.querySelectorAll('.btn');
+        const bottomPageButtons = this.pageNumbersBottom.querySelectorAll('.btn');
         
         [topPageButtons, bottomPageButtons].forEach(buttonGroup => {
             buttonGroup.forEach(button => {
@@ -228,7 +230,7 @@ class NavigationManager {
                 const status = this.questionManager.getPageStatus(pageNumber);
                 
                 if (status !== 'completed') {
-                    button.classList.add('border-red-500', 'bg-red-50');
+                    button.classList.add('btn-error');
                     button.style.animation = 'pulse 2s infinite';
                 }
             });
@@ -238,10 +240,12 @@ class NavigationManager {
         setTimeout(() => {
             [topPageButtons, bottomPageButtons].forEach(buttonGroup => {
                 buttonGroup.forEach(button => {
-                    button.classList.remove('border-red-500', 'bg-red-50');
+                    button.classList.remove('btn-error');
                     button.style.animation = '';
                 });
             });
+            // Refresh the normal state
+            this.updatePageStatus();
         }, 5000);
     }
 

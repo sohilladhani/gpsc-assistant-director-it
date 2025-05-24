@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPSC - Assistant Director IT Exam - Online Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DaisyUI CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-base-200 min-h-screen">
     <!-- Header -->
-    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
+    <header class="navbar bg-primary text-primary-content shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex-1">
                 <div>
                     <h1 class="text-xl font-bold">GPSC - Assistant Director IT Exam</h1>
                     <p class="text-sm opacity-90">Gujarat Public Service Commission</p>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div id="timer" class="bg-red-600 px-4 py-2 rounded-lg font-mono text-lg">
-                        02:00:00
-                    </div>
-                    <button id="submitBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition-colors">
-                        Submit Test
-                    </button>
+            </div>
+            <div class="flex-none gap-4">
+                <div id="timer" class="badge badge-error badge-lg font-mono text-lg px-4 py-3">
+                    02:00:00
                 </div>
+                <button id="submitBtn" class="btn btn-success">
+                    Submit Test
+                </button>
             </div>
         </div>
     </header>
@@ -32,146 +34,190 @@
     <!-- Main Container -->
     <div class="container mx-auto px-4 py-6">
         <!-- Start Screen -->
-        <div id="startScreen" class="max-w-4xl mx-auto text-center">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <div class="mb-6">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">GPSC - Assistant Director IT Exam</h2>
-                    <h3 class="text-xl text-gray-600 mb-2">Gujarat Public Service Commission</h3>
-                    <div class="text-gray-500">
-                        <p>Directorate of ICT and E-Governance, Class-I</p>
-                        <p>Advertisement No. 67/2016-17 | P.T. Date: 29-01-2017</p>
-                    </div>
-                </div>
-                
-                <div class="text-left space-y-4 mb-8">
-                    <h4 class="text-lg font-semibold text-gray-800 border-b pb-2">Exam Instructions:</h4>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <h5 class="font-semibold text-gray-700 mb-2">Exam Details:</h5>
-                            <ul class="list-disc pl-6 space-y-1 text-sm">
-                                <li>Total Questions: 200 (Questions 101-300)</li>
-                                <li>Time Limit: 2 Hours (120 minutes)</li>
-                                <li>Questions per page: 10</li>
-                                <li>Subject: Computer Science & IT</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 class="font-semibold text-gray-700 mb-2">Marking Scheme:</h5>
-                            <ul class="list-disc pl-6 space-y-1 text-sm">
-                                <li>Correct Answer: +1 mark</li>
-                                <li>Wrong Answer: 0 marks</li>
-                                <li>Not Attempted: -1/3 mark (penalty)</li>
-                                <li>Skipped (Option E): 0 marks</li>
-                            </ul>
+        <div id="startScreen" class="max-w-4xl mx-auto">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="text-center mb-6">
+                        <h2 class="card-title text-3xl font-bold justify-center mb-2">GPSC - Assistant Director IT Exam</h2>
+                        <h3 class="text-xl text-base-content/70 mb-2">Gujarat Public Service Commission</h3>
+                        <div class="text-base-content/60">
+                            <p>Directorate of ICT and E-Governance, Class-I</p>
+                            <p>Advertisement No. 67/2016-17 | P.T. Date: 29-01-2017</p>
                         </div>
                     </div>
                     
-                    <div>
-                        <h5 class="font-semibold text-gray-700 mb-2">Important Guidelines:</h5>
-                        <ul class="list-disc pl-6 space-y-1 text-sm">
-                            <li>Select option 'E' if you want to skip a question without penalty</li>
-                            <li>Once an answer is selected, it cannot be changed</li>
-                            <li>Auto-save occurs every 30 seconds</li>
-                            <li>Warning notifications at 30, 10, and 5 minutes remaining</li>
-                            <li>Test will auto-submit when time expires</li>
-                            <li>Use keyboard shortcuts: Ctrl+S (save), Ctrl+Enter (submit)</li>
-                        </ul>
+                    <div class="space-y-6 mb-8">
+                        <h4 class="text-lg font-semibold border-b border-base-300 pb-2">Exam Instructions:</h4>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="card bg-base-200">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title text-base">Exam Details:</h5>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-primary badge-xs"></span>
+                                            Total Questions: 200 (Questions 101-300)
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-primary badge-xs"></span>
+                                            Time Limit: 2 Hours (120 minutes)
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-primary badge-xs"></span>
+                                            Questions per page: 10
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-primary badge-xs"></span>
+                                            Subject: Computer Science & IT
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card bg-base-200">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title text-base">Marking Scheme:</h5>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-success badge-xs"></span>
+                                            Correct Answer: +1 mark
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-neutral badge-xs"></span>
+                                            Wrong Answer: 0 marks
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-error badge-xs"></span>
+                                            Not Attempted: -1/3 mark (penalty)
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="badge badge-info badge-xs"></span>
+                                            Skipped (Option E): 0 marks
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <h5 class="font-semibold">Important Guidelines:</h5>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Select option 'E' if you want to skip a question without penalty</li>
+                                    <li>• Once an answer is selected, it cannot be changed</li>
+                                    <li>• Auto-save occurs every 30 seconds</li>
+                                    <li>• Warning notifications at 30, 10, and 5 minutes remaining</li>
+                                    <li>• Test will auto-submit when time expires</li>
+                                    <li>• Use keyboard shortcuts: Ctrl+S (save), Ctrl+Enter (submit)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions justify-center">
+                        <button id="startBtn" class="btn btn-primary btn-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                            </svg>
+                            Start GPSC Exam
+                        </button>
                     </div>
                 </div>
-                
-                <button id="startBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors shadow-md">
-                    Start GPSC Exam
-                </button>
             </div>
         </div>
 
         <!-- Test Interface -->
         <div id="testInterface" class="hidden">
             <!-- Navigation Bar -->
-            <div class="bg-white rounded-lg shadow-md mb-6 p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <h3 class="text-lg font-semibold">Page <span id="currentPage">1</span> of 20</h3>
-                        <p class="text-sm text-gray-600">GPSC - Assistant Director IT Exam</p>
+            <div class="card bg-base-100 shadow-md mb-6">
+                <div class="card-body">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Page <span id="currentPage">1</span> of 20</h3>
+                            <p class="text-sm text-base-content/70">GPSC - Assistant Director IT Exam</p>
+                        </div>
+                        <div class="badge badge-outline">
+                            Questions <span id="questionRange">101-110</span>
+                        </div>
                     </div>
-                    <div class="text-sm text-gray-600">
-                        Questions <span id="questionRange">101-110</span>
+                    
+                    <!-- Page Navigation -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button id="prevBtn" class="btn btn-neutral btn-sm" disabled>
+                            Previous
+                        </button>
+                        <div id="pageNumbers" class="flex flex-wrap gap-1">
+                            <!-- Page numbers will be dynamically generated -->
+                        </div>
+                        <button id="nextBtn" class="btn btn-primary btn-sm">
+                            Next
+                        </button>
                     </div>
-                </div>
-                
-                <!-- Page Navigation -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <button id="prevBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                        Previous
-                    </button>
-                    <div id="pageNumbers" class="flex flex-wrap gap-1">
-                        <!-- Page numbers will be dynamically generated -->
-                    </div>
-                    <button id="nextBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                        Next
-                    </button>
-                </div>
 
-                <!-- Question Status -->
-                <div class="flex items-center space-x-4 text-sm">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
-                        <span>Answered</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
-                        <span>Not Attempted</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-blue-500 rounded mr-2"></div>
-                        <span>Skipped (E)</span>
+                    <!-- Question Status -->
+                    <div class="flex items-center gap-4 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-success badge-xs"></div>
+                            <span>Answered</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-warning badge-xs"></div>
+                            <span>Not Attempted</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-info badge-xs"></div>
+                            <span>Skipped (E)</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Questions Container -->
-            <div id="questionsContainer" class="bg-white rounded-lg shadow-md p-6">
-                <!-- Questions will be dynamically loaded here -->
+            <div id="questionsContainer" class="card bg-base-100 shadow-md">
+                <div class="card-body">
+                    <!-- Questions will be dynamically loaded here -->
+                </div>
             </div>
 
             <!-- Bottom Navigation Bar -->
-            <div class="bg-white rounded-lg shadow-md mt-6 p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <h3 class="text-lg font-semibold">Page <span id="currentPageBottom">1</span> of 20</h3>
-                        <p class="text-sm text-gray-600">GPSC - Assistant Director IT Exam</p>
+            <div class="card bg-base-100 shadow-md mt-6">
+                <div class="card-body">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Page <span id="currentPageBottom">1</span> of 20</h3>
+                            <p class="text-sm text-base-content/70">GPSC - Assistant Director IT Exam</p>
+                        </div>
+                        <div class="badge badge-outline">
+                            Questions <span id="questionRangeBottom">101-110</span>
+                        </div>
                     </div>
-                    <div class="text-sm text-gray-600">
-                        Questions <span id="questionRangeBottom">101-110</span>
+                    
+                    <!-- Page Navigation -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button id="prevBtnBottom" class="btn btn-neutral btn-sm" disabled>
+                            Previous
+                        </button>
+                        <div id="pageNumbersBottom" class="flex flex-wrap gap-1">
+                            <!-- Page numbers will be dynamically generated -->
+                        </div>
+                        <button id="nextBtnBottom" class="btn btn-primary btn-sm">
+                            Next
+                        </button>
                     </div>
-                </div>
-                
-                <!-- Page Navigation -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <button id="prevBtnBottom" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                        Previous
-                    </button>
-                    <div id="pageNumbersBottom" class="flex flex-wrap gap-1">
-                        <!-- Page numbers will be dynamically generated -->
-                    </div>
-                    <button id="nextBtnBottom" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                        Next
-                    </button>
-                </div>
 
-                <!-- Question Status -->
-                <div class="flex items-center space-x-4 text-sm">
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
-                        <span>Answered</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
-                        <span>Not Attempted</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-blue-500 rounded mr-2"></div>
-                        <span>Skipped (E)</span>
+                    <!-- Question Status -->
+                    <div class="flex items-center gap-4 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-success badge-xs"></div>
+                            <span>Answered</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-warning badge-xs"></div>
+                            <span>Not Attempted</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="badge badge-info badge-xs"></div>
+                            <span>Skipped (E)</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,93 +225,97 @@
 
         <!-- Results Screen -->
         <div id="resultsScreen" class="hidden max-w-4xl mx-auto">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">GPSC Exam Results</h2>
-                    <h3 class="text-lg text-gray-600">Assistant Director IT - Preliminary Test</h3>
-                    <p class="text-sm text-gray-500">Gujarat Public Service Commission</p>
-                </div>
-                
-                <!-- Score Summary -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-green-100 p-6 rounded-lg text-center">
-                        <h3 class="text-2xl font-bold text-green-800" id="finalScore">0</h3>
-                        <p class="text-green-600">Final Score</p>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="text-center mb-6">
+                        <h2 class="card-title text-3xl font-bold justify-center mb-2">GPSC Exam Results</h2>
+                        <h3 class="text-lg text-base-content/70">Assistant Director IT - Preliminary Test</h3>
+                        <p class="text-sm text-base-content/60">Gujarat Public Service Commission</p>
                     </div>
-                    <div class="bg-blue-100 p-6 rounded-lg text-center">
-                        <h3 class="text-2xl font-bold text-blue-800" id="timeTaken">00:00:00</h3>
-                        <p class="text-blue-600">Time Taken</p>
+                    
+                    <!-- Score Summary -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="stat bg-success text-success-content rounded-box">
+                            <div class="stat-title text-success-content/70">Final Score</div>
+                            <div class="stat-value" id="finalScore">0</div>
+                        </div>
+                        <div class="stat bg-info text-info-content rounded-box">
+                            <div class="stat-title text-info-content/70">Time Taken</div>
+                            <div class="stat-value text-2xl" id="timeTaken">00:00:00</div>
+                        </div>
+                        <div class="stat bg-secondary text-secondary-content rounded-box">
+                            <div class="stat-title text-secondary-content/70">Percentage</div>
+                            <div class="stat-value" id="percentage">0%</div>
+                        </div>
                     </div>
-                    <div class="bg-purple-100 p-6 rounded-lg text-center">
-                        <h3 class="text-2xl font-bold text-purple-800" id="percentage">0%</h3>
-                        <p class="text-purple-600">Percentage</p>
-                    </div>
-                </div>
 
-                <!-- Detailed Analysis -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                    <div class="bg-green-50 p-4 rounded-lg text-center">
-                        <h4 class="text-lg font-bold text-green-800" id="correctCount">0</h4>
-                        <p class="text-green-600">Correct</p>
+                    <!-- Detailed Analysis -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <div class="stat bg-success/10 rounded-box">
+                            <div class="stat-title">Correct</div>
+                            <div class="stat-value text-success" id="correctCount">0</div>
+                        </div>
+                        <div class="stat bg-error/10 rounded-box">
+                            <div class="stat-title">Wrong</div>
+                            <div class="stat-value text-error" id="wrongCount">0</div>
+                        </div>
+                        <div class="stat bg-info/10 rounded-box">
+                            <div class="stat-title">Skipped</div>
+                            <div class="stat-value text-info" id="skippedCount">0</div>
+                        </div>
+                        <div class="stat bg-warning/10 rounded-box">
+                            <div class="stat-title">Not Attempted</div>
+                            <div class="stat-value text-warning" id="notAttemptedCount">0</div>
+                        </div>
                     </div>
-                    <div class="bg-red-50 p-4 rounded-lg text-center">
-                        <h4 class="text-lg font-bold text-red-800" id="wrongCount">0</h4>
-                        <p class="text-red-600">Wrong</p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg text-center">
-                        <h4 class="text-lg font-bold text-blue-800" id="skippedCount">0</h4>
-                        <p class="text-blue-600">Skipped</p>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg text-center">
-                        <h4 class="text-lg font-bold text-yellow-800" id="notAttemptedCount">0</h4>
-                        <p class="text-yellow-600">Not Attempted</p>
-                    </div>
-                </div>
 
-                <!-- Question-wise Analysis -->
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-4">Question-wise Analysis</h3>
-                    <div id="analysisContainer" class="space-y-4 max-h-96 overflow-y-auto">
-                        <!-- Analysis will be populated here -->
+                    <!-- Question-wise Analysis -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold mb-4">Question-wise Analysis</h3>
+                        <div id="analysisContainer" class="space-y-4 max-h-96 overflow-y-auto">
+                            <!-- Analysis will be populated here -->
+                        </div>
                     </div>
-                </div>
 
-                <!-- Restart Button -->
-                <div class="text-center">
-                    <button id="restartBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors">
-                        Take Test Again
-                    </button>
+                    <!-- Restart Button -->
+                    <div class="card-actions justify-center">
+                        <button id="restartBtn" class="btn btn-primary btn-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                            Take Test Again
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Warning Modal -->
-    <div id="warningModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4">
-            <h3 class="text-xl font-bold text-red-600 mb-4">Time Warning!</h3>
-            <p id="warningMessage" class="text-gray-700 mb-4"></p>
-            <button id="warningOk" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg">
-                OK
-            </button>
-        </div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Submission</h3>
-            <p class="text-gray-700 mb-4">Are you sure you want to submit the GPSC exam? You cannot change your answers after submission.</p>
-            <div class="flex space-x-4">
-                <button id="confirmYes" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">
-                    Yes, Submit
-                </button>
-                <button id="confirmNo" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">
-                    Cancel
-                </button>
+    <dialog id="warningModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg text-error">Time Warning!</h3>
+            <p class="py-4" id="warningMessage"></p>
+            <div class="modal-action">
+                <button id="warningOk" class="btn btn-error">OK</button>
             </div>
         </div>
-    </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <!-- Confirmation Modal -->
+    <dialog id="confirmModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Confirm Submission</h3>
+            <p class="py-4">Are you sure you want to submit the GPSC exam? You cannot change your answers after submission.</p>
+            <div class="modal-action">
+                <button id="confirmYes" class="btn btn-success">Yes, Submit</button>
+                <button id="confirmNo" class="btn btn-neutral">Cancel</button>
+            </div>
+        </div>
+    </dialog>
 
     <script src="data.js"></script>
     <script src="timer.js"></script>
